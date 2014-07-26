@@ -15,7 +15,7 @@
 #  ------------------------------------------------------------------------------------------------------------------------ 
 #
 # Prepare working directory
-wd <- "/Users/sangeethabuvanendiran/Documents/Buva- Data Science/Exploratory Data Analysis/Course Project/"
+wd <- "/Users/sbuva/Documents/Buva- Data Science/Exploratory Data Analysis/Course Project/"
 setwd(wd)
 
 library(plyr)
