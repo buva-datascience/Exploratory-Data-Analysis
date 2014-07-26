@@ -27,7 +27,7 @@ dwld_file <- function(fileurl){
         
         if (!file.exists("data")) dir.create("data")                            # create a folder if it doesnt exist        
         
-        if (!file.exists("./data/NEI-Dataset.zip")) {           # download the file if its not already downloaded
+        if (!file.exists("./data/NEI-Dataset.zip")) {                           # download the file if its not already downloaded
                 download.file(fileurl, destfile = "./data/NEI-Dataset.zip", method = "curl")
         }
         
@@ -72,11 +72,8 @@ SummarySCC.PM25$year <- factor(SummarySCC.PM25$year)
 # Filter Baltimore && LA Data
 LA.Bltimr.Data <- SummarySCC.PM25[ SummarySCC.PM25$fips =="24510" | SummarySCC.PM25$fips =="06037" ,]
 
-# Create a subset of the SCC dataset with fewer columns
-SCC_Subset <- SCC[1:4]
-
 # Check for the Motor Vehicle Source classification
-Vehicle.Data <- as.data.frame(SCC[ grep("vehicle", SCC_Subset$EI.Sector, ignore.case=T), 1])
+Vehicle.Data <- as.data.frame(SCC[ grep("vehicle", SCC$EI.Sector, ignore.case=T), 1])
 names(Vehicle.Data) <- "SCC"
 
 # Merge the Motor Vehicle with the PM25 data

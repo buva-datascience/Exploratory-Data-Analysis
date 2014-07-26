@@ -21,11 +21,11 @@ library(plyr)
 rm(list=ls())
 
 # function to Download the file from the website location to the local directory
-dwld_file <- function(fileurl){
+dwld_file <- function (fileurl) {
         
         if (!file.exists("data")) dir.create("data")                            # create a folder if it doesnt exist        
         
-        if (!file.exists("./data/NEI-Dataset.zip")) {           # download the file if its not already downloaded
+        if (!file.exists("./data/NEI-Dataset.zip")) {                           # download the file if its not already downloaded
                 download.file(fileurl, destfile = "./data/NEI-Dataset.zip", method = "curl")
         }
         
@@ -65,9 +65,6 @@ SummarySCC.PM25 <- readRDS("summarySCC_PM25.rds")
 
 # Convert the year into a factor
 SummarySCC.PM25$year <- factor(SummarySCC.PM25$year) 
-
-# Use tapply() to calculate the sum of Emissions based on the year factor 
-#plot_data <- with(SummarySCC.PM25, tapply(Emissions, year, sum))
 
 # Use ddply() to calculate the sum of Emissions based on the year factor 
 plot_data <- ddply(SummarySCC.PM25,.(year),summarize,TotalEmissions=sum(Emissions))

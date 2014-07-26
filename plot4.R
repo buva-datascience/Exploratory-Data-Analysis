@@ -22,11 +22,11 @@ library(ggplot2)
 rm(list=ls())
 
 # function to Download the file from the website location to the local directory
-dwld_file <- function(fileurl){
+dwld_file <- function (fileurl) {
         
         if (!file.exists("data")) dir.create("data")                            # create a folder if it doesnt exist        
         
-        if (!file.exists("./data/NEI-Dataset.zip")) {           # download the file if its not already downloaded
+        if (!file.exists("./data/NEI-Dataset.zip")) {                           # download the file if its not already downloaded
                 download.file(fileurl, destfile = "./data/NEI-Dataset.zip", method = "curl")
         }
         
@@ -63,12 +63,8 @@ SummarySCC.PM25 <- readRDS("summarySCC_PM25.rds")
 #
 ################################################################################
 #
-
 # Convert year into a factor
 SummarySCC.PM25$year <- factor(SummarySCC.PM25$year) 
-
-# Create a subset of the SCC dataset with fewer columns
-SCC_Subset <- SCC[1:4]
 
 # Check for the coal combustion emission source classification
 Coal.Data <- as.data.frame(SCC[ grep("coal", SCC$EI.Sector, ignore.case=T),1 ])
@@ -83,7 +79,7 @@ plot_data <- ddply(Merged, .(year), summarize, Avg.Emissions=mean(Emissions))
 # GG plot 
 par(bg="white", mfrow=c(1,1))
 
-# Use qplot() for graph
+# Use may also use the qplot() for graph
 # qplot(data=plot_data, x=year, y=Avg.Emissions, xlab="Year", ylab="Average Emissions each year", 
 #      main="United States - PM2.5 Emission from coal combustion-related sources")
 

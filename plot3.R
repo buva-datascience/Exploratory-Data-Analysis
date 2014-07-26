@@ -24,11 +24,11 @@ library(ggplot2)
 rm(list=ls())
 
 # function to Download the file from the website location to the local directory
-dwld_file <- function(fileurl){
+dwld_file <- function (fileurl) {
         
         if (!file.exists("data")) dir.create("data")                            # create a folder if it doesnt exist        
         
-        if (!file.exists("./data/NEI-Dataset.zip")) {           # download the file if its not already downloaded
+        if (!file.exists("./data/NEI-Dataset.zip")) {                           # download the file if its not already downloaded
                 download.file(fileurl, destfile = "./data/NEI-Dataset.zip", method = "curl")
         }
         
@@ -70,8 +70,10 @@ SummarySCC.PM25 <- readRDS("summarySCC_PM25.rds")
 # Convert year into a factor
 SummarySCC.PM25$year <- factor(SummarySCC.PM25$year) 
 
+# Filter Baltimore Data
 Baltimore.Data <- SummarySCC.PM25[ SummarySCC.PM25$fips =="24510",]
 
+# Prepare Avg Emissions Data for plotting
 plot_data <- ddply(Baltimore.Data, .(year, type), summarize, Avg.Emissions=mean(Emissions))
 
 # GG plot 
