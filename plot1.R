@@ -18,6 +18,8 @@ wd <- "/Users/sangeethabuvanendiran/Documents/Buva- Data Science/Exploratory Dat
 setwd(wd)
 
 library(plyr)
+
+# Clear Environment Memory
 rm(list=ls())
 
 # function to Download the file from the website location to the local directory
@@ -39,21 +41,9 @@ dwld_file <- function (fileurl) {
 # Call funtion to download from the url
 dwld_file("https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2FNEI_data.zip")
 
-
 # read RDS files
 SCC             <- readRDS("Source_Classification_Code.rds")
 SummarySCC.PM25 <- readRDS("summarySCC_PM25.rds")
-
-################################################################################
-#
-# Assignment
-#
-# The overall goal of this assignment is to explore the National Emissions Inventory database and see what it say  
-# about fine particulate matter pollution in the United states over the 10-year period 1999–2008. You may use any   
-# R package you want to support your analysis.
-#
-# You must address the following questions and tasks in your exploratory analysis. For each question/task you will  
-# need to make a single plot. Unless specified, you can use any plotting system in R to make your plot.
 #
 ################################################################################
 #
@@ -62,7 +52,7 @@ SummarySCC.PM25 <- readRDS("summarySCC_PM25.rds")
 # make a plot showing the total PM2.5 emission from all sources for each of the years 1999, 2002, 2005, and 2008.
 #
 ################################################################################
-
+#
 # Convert the year into a factor
 SummarySCC.PM25$year <- factor(SummarySCC.PM25$year) 
 
